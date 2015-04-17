@@ -1,0 +1,40 @@
+expertises:
+  - name: Open Data
+    icon: fa-check-circle-o
+  - name: Prizes
+    icon: fa-gift
+  - name: Crowdsourcing
+    icon: fa-eye
+  - name: Citizen Science
+    icon: fa-line-chart
+  - name: Agile
+    icon: fa-refresh
+  - name: Partnerships
+    icon: fa-arrows-alt
+  - name: Nudges
+    icon: fa-money
+sectors:
+  - name: Education
+    icon: fa-graduation-cap
+  - name: Health
+    icon: fa-medkit
+  - name: Transportation
+    icon: fa-subway
+  - name: Emergency
+    icon: fa-ambulance
+  - name: Human Rights
+    icon: fa-fire
+  - name: Environment
+    icon: fa-tree
+open-data:
+  - title: Operations
+    description: Avoid doing X and Y while doing Z ...
+    topics:
+      - name: Scraping data from a domain
+      - name: Making data machine-readable
+      - name: Formatting data for publication
+  - title: Governance
+    description: Avoid doing X and Y while doing Z ...
+  - title: Developing a Strategy and Policy
+    description: Avoid doing X and Y while doing Z ...
+
