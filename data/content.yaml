@@ -26,6 +26,11 @@ sectors:
     icon: fa-fire
   - name: Environment
     icon: fa-tree
+answers:
+  - name: EXPLANATORY
+  - name: FAMILIARITY
+  - name: MASTERY
+  - name: REFERRALS
 open-data:
   - title: Operations
     description: Avoid doing X and Y while doing Z ...
@@ -36,5 +41,4 @@ open-data:
   - title: Governance
     description: Avoid doing X and Y while doing Z ...
   - title: Developing a Strategy and Policy
-    description: Avoid doing X and Y while doing Z ...
-
+    description: Avoid doing X and Y while doing Z ...    
