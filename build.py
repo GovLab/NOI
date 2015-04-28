@@ -1,7 +1,6 @@
 import glob
 import os
 import yaml
-from slugify import slugify
 
 from jinja2 import Environment, FileSystemLoader
 
@@ -15,7 +14,7 @@ def Main():
 
 	template = env.get_template('index.html')
 	html = template.render({ 'EXPERTISES': CONTENT['expertises'], 'SECTORS': CONTENT['sectors'],
-		'OPENDATA': CONTENT['open-data']})
+		'OPENDATA': CONTENT['open-data'],'ANSWERS': CONTENT['answers'], 'QUESTIONS': CONTENT['questions'] })
 	with open('index.html', 'w') as f:
 		f.write(html.encode('utf8'))
 		f.close()
