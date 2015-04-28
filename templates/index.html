@@ -5,14 +5,69 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Multi-page template</title>
+	<title>Network of Innovators</title>
 	<link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css">
 	<link rel="shortcut icon" href="../favicon.ico">
 
 <link rel="stylesheet" href="css/font-awesome.min.css">
+<!-- NEW ADDITIONS-->
+<link type="text/css" rel="stylesheet" href="css/jquery.bxslider.css" />
+
 
 	<script src="js/jquery-1.11.2.min.js"></script>
 	<script src="js/jquery.mobile-1.4.5.min.js"></script>
+
+
+<script type="text/javascript">
+
+$(document).ready(function () {
+
+     // Attach Button click event listener 
+    $("#nextbtn").click(function(){
+         // show popup
+         $('#instructions').popup('open');
+    });
+
+    {% for item in QUESTIONS %}
+		{% if loop.index > 1%}
+		  $("div#question-{{item.number}}").hide();
+		{% endif %}
+		{% endfor %}
+
+		{% for item in QUESTIONS %}
+		
+
+		 $("input[name$='checkbox-{{item.number}}']").click(function() {
+    	//alert("I am an alert box!");
+
+	    	$("#question-{{item.number}}").hide();
+	        
+	        $("#question-{{item.number + 1}}").show();
+    	});
+
+		{% endfor %}
+});
+
+$(document).on('pagebeforeshow', '#questionnaire', function(){ 
+    $('<input>').appendTo('[ data-role="content"]').attr({'name':'slider','id':'slider','data-highlight':'true','min':'0','max':'100','value':'0','type':'range'}).slider({
+        create: function( event, ui ) {
+            $(this).parent().find('input').hide();
+            $(this).parent().find('input').css('margin-left','-9999px'); // Fix for some FF versions
+            $(this).parent().find('.ui-slider-track').css('margin','0 15px 0 15px');
+            $(this).parent().find('.ui-slider-handle').hide();
+        }
+    }).slider("refresh");      
+    
+});
+
+	var progressBar = {
+    setValue:function(id, value) {
+        $(id).val(value);
+        $(id).slider("refresh");
+    }
+}
+</script>
+
 </head>
 
 <body>
@@ -20,32 +75,24 @@
 <!-- Start of first page: #one -->
 <div data-role="page" id="one">
 
-	<div data-role="header">
-		<h1>No title</h1>
-	</div><!-- /header -->
 
-	<div role="main" class="ui-content">
+	<div role="main" class="ui-content" >
+		<center></center>
 		<h2>Network of Innovators</h2>
 
-		<p>Synthesize community health workers,
-socio-economic divide, UNICEF save the
-world educate replicable lasting change
-compassion. Citizenry, emergency response
-voice; community, Aga Khan global leaders
-implementation social movement.</p>
+		<p>Placeholder text</p>
 
 
 	</div><!-- /content -->
 
 <center>
+<a href="#area-of-expertise" data-role="button" data-inline="true">Twitter</a>
+<a href="#area-of-expertise" data-role="button" data-inline="true">Facebook</a>
 <a href="#area-of-expertise" data-role="button" data-inline="true">Sign-in</a>
 </center>
 
 <br/>
 
-	<div data-role="footer" data-theme="a">
-		<h4>Page Footer</h4>
-	</div><!-- /footer -->
 </div><!-- /page one -->
 
 
@@ -53,7 +100,7 @@ implementation social movement.</p>
 <div data-role="page" id="area-of-expertise" data-theme="a">
 
 	<div data-role="header">
-		<h1>What is your area of expertise?</h1>
+		<h1>Areas of interest?</h1>
 	</div><!-- /header -->
 
 	<div role="main" class="ui-content">
@@ -61,24 +108,215 @@ implementation social movement.</p>
 	<div class="ui-grid-a">
 		{% for item in EXPERTISES %}
 		{% if loop.index is odd %}
-		<div style="width: 250px; margin-left: 10%; margin-right: 10px;" class="ui-block-a"><i class="fa {{item.icon}} fa-5x"></i><br/><label><input type="checkbox" name="checkbox-0" />{{item.name}}</label></div>
+		<div  class="ui-block-a"><i class="fa {{item.icon}} fa-5x"></i><br/><label><input type="checkbox" name="checkbox-0" />{{item.name}}</label></div>
 		{% else %}
-		<div style="width: 250px; margin-right: 10%; margin-left:10px;" class="ui-block-b"><i class="fa {{item.icon}} fa-5x"></i><br/><label><input type="checkbox" name="checkbox-0" />{{item.name}}</label></div>
+		<div class="ui-block-b"><i class="fa {{item.icon}} fa-5x"></i><br/><label><input type="checkbox" name="checkbox-0" />{{item.name}}</label></div>
 		{% endif %}
 		{% endfor %}
 	</div>
 	</center>
 
 <center>
-<a href="#select-sectors" data-role="button" data-inline="true">Next</a>
+<a href="#questionnaire" data-rel="popup" data-role="button" data-inline="true" id="nextbtn">Next</a>
+</center>
+<div data-role="popup" id="instructions">
+	
+	<p>These questions are intended to describe what you to know about open data to facilitate targeted matching with those seeking expertise. The questions are also designed to provide an overview of what's involved in a typical open data project. For each question below, check which of the following kinds of expertise you possess, if any. When in doubt, check all that apply.<br>
+	<p>The next set of 7 questions ask about your knowledge of open data strategy and policy</p>
+
+	<center><a href="#questionnaire" data-role="button" data-inline="true">Okay</a></center>
+</div>
+
+	</div><!-- /content -->
+
+</div><!-- /page two -->
+
+<div data-role="page" id="questionnaire" data-theme="a">
+
+
+	<div data-role="header">
+		Open-data Questions 
+	</div><!-- /header -->
+
+	<div data-role="content"></div>
+	<div role="main" class="ui-content">
+	<center>
+	
+		{% for item1 in QUESTIONS %}
+		<div id="question-{{item1.number}}">
+		<label>I know .. {{item1.name}}</label>
+		{% for item in ANSWERS %}
+		{% if loop.index is odd %}
+		<div data-enhance="false"><label><input type="checkbox" name="checkbox-{{item1.number}}" value="{{item.name}}" onchange="progressBar.setValue('#slider',({{item1.number}}*4);"/>{{item.name}}</label></div>
+		{% else %}
+		<div ><label><input type="checkbox" name="checkbox-{{item1.number}}" value="{{item.name}}" onchange="progressBar.setValue('#slider',{{item1.number}}+10);" />{{item.name}}</label></div>
+		{% endif %}
+		{% endfor %}
+	</div>
+		{% endfor %}
+	</center>
+
+<center>
+<a href="#result-page" data-role="button" data-inline="true">Next</a>
 </center>
 
 	</div><!-- /content -->
 
-	<div data-role="footer">
-		<h4>Page Footer</h4>
-	</div><!-- /footer -->
 </div><!-- /page two -->
+
+<!-- page three -->
+
+<div data-role="page" id="result-page" data-theme="a">
+
+	<div role="main" class="ui-content">
+	<center>
+	<label><a href="#peer-match" data-role="button" data-inline="true" >Peer Match</a></label>
+	<label><a href="#playlist" data-role="button" data-inline="true" >Recommended Sessions</a></label>
+	<label><a href="#peer-match" data-role="button" data-inline="true" >Civic Graph</a></label>	
+
+</center>
+	</div><!-- /content -->
+
+</div><!-- /page three -->
+
+<!-- page four -->
+
+<div data-role="page" id="peer-match" data-theme="a">
+
+<div class="wrapper">
+	<section id="header">
+		<div class="logo">
+			<a href="index.html"><img src="images/search.png" alt=""></a>
+		</div>
+		<h1>Peer Match</h1>
+		<div class="nav">
+			<span><img src="images/search-men.png" alt=""></span>
+			<a href="#"><img src="images/menu.png" alt=""></a>
+		</div>
+	</section>
+	<div class="clear"></div>
+	<section id="top">
+		<a href="#">&lt; Back to Flowers</a>
+		<h3>Results</h3>
+	</section>
+	<div class="clear"></div>
+	<section id="details">
+		<ul>
+			<li><a href="#">
+					<div class="left">
+						<img src="images/link.png" alt="">
+					</div>
+					<div class="right">
+						<h3>Eric fensterheim</h3>
+						<p>Director Deipartment Of Education Used Stales</p>
+						<label><img src="images/star.png" alt="">Add Favorila</label>
+					</div>
+				</a>
+			</li>
+			<li><a href="#">
+					<div class="left">
+						<img src="images/search-link.png" alt="">
+					</div>
+					<div class="right">
+						<h3>Eric fensterheim</h3>
+						<p>Director Deipartment Of Education Used Stales</p>
+						<label><img src="images/black-star.png" alt="">Add Favorila</label>
+					</div>
+				</a>
+			</li>
+			<li><a href="#">
+					<div class="left">
+						<img src="images/search-link.png" alt="">
+					</div>
+					<div class="right">
+						<h3>Eric fensterheim</h3>
+						<p>Director Deipartment Of Education Used Stales</p>
+						<label><img src="images/star.png" alt="">Add Favorila</label>
+					</div>
+				</a>
+			</li>
+			<li><a href="#">
+					<div class="left">
+						<img src="images/link.png" alt="">
+					</div>
+					<div class="right">
+						<h3>Eric fensterheim</h3>
+						<p>Director Deipartment Of Education Used Stales</p>
+						<label><img src="images/star.png" alt="">Add Favorila</label>
+					</div>
+				</a>
+			</li>
+		</ul>
+		<center><a href="#result-page" data-role="button" data-inline="true" style="width:18%">Back</a></center>
+	</section>
+</div>	
+
+</div><!-- /page four -->
+
+<!-- page Reccommended sessions -->
+
+<div data-role="page" id="playlist" data-theme="a">
+
+<div data-role="header">
+		<h1>Recommended sessions based on your interests</h1>
+	</div><!-- /header --> 
+
+	<div role="main" class="ui-content">
+	<center>
+
+	<table data-role="table" data-mode="columntoggle" class="ui-responsive" id="myTable">
+      <thead>
+        <tr>
+          
+          <th>Time</th>
+          <th data-priority="1">Title</th>
+          <th data-priority="2">Location</th>
+          <th data-priority="5">Speakers</th>
+   
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td>Alfreds Futterkiste</td>
+          <td>Maria Anders</td>
+          <td>Maria Anders</td>
+       
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>Antonio Moreno Taquería</td>
+          <td>Antonio Moreno</td>
+          <td>Maria Anders</td>
+       
+         
+        </tr>
+        <tr>
+          <td>3</td>
+          <td>Around the Horn</td>
+          <td>Thomas Hardy</td>
+          <td>Maria Anders</td>
+       
+       
+        </tr>
+        <tr>
+          <td>4</td>
+          <td>Berglunds snabbköp</td>
+          <td>Christina Berglund</td>
+          <td>Maria Anders</td>
+     
+       
+        </tr>
+
+      </tbody>
+    </table>
+
+	<label><a href="#result-page" data-role="button" data-inline="true" style="width:18%">Back</a></label>
+</center>
+
+	</div><!-- /content -->
+
+</div><!-- /page five -->
 
 <div data-role="page" id="select-sectors" data-theme="a">
 
@@ -91,7 +329,7 @@ implementation social movement.</p>
 	<div class="ui-grid-a">
 		{% for item in SECTORS %}
 		{% if loop.index is odd %}
-		<div style="width: 250px; margin-left: 10%; margin-right: 10px;" class="ui-block-a"><i class="fa {{item.icon}} fa-5x"></i><br/><label><input type="checkbox" name="checkbox-0" />{{item.name}}</label></div>
+		<div data-enhance="false" style="width: 250px; margin-left: 10%; margin-right: 10px;" class="ui-block-a"><i class="fa {{item.icon}} fa-5x"></i><br/><label><input type="checkbox" name="checkbox-0" />{{item.name}}</label></div>
 		{% else %}
 		<div style="width: 250px; margin-right: 10%; margin-left:10px;" class="ui-block-b"><i class="fa {{item.icon}} fa-5x"></i><br/><label><input type="checkbox" name="checkbox-0" />{{item.name}}</label></div>
 		{% endif %}
@@ -145,7 +383,7 @@ implementation social movement.</p>
     <li><h2>{{topic.name}}</h2>
 
 <div class="ui-field-contain">
-  <fieldset data-role="controlgroup" data-type="horizontal">
+  <fieldset data-enhance="false" data-role="controlgroup" data-type="horizontal">
 		<input type="button" data-icon="back" data-iconpos="right" value="A Little">
 		<input type="button" data-icon="back" data-iconpos="right" value="Some">
 		<input type="button" data-icon="back" data-iconpos="right" value="A Lot">
