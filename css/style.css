@@ -1,0 +1,264 @@
+/* RESET CSS */
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video, input {
+	margin:0px;
+	padding:0px;
+}
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {display:block;}
+
+body {
+	line-height:1;
+	overflow-x:hidden;
+}
+
+ol, ul {list-style:none;}
+
+blockquote, q {quotes:none;}
+
+blockquote:before, blockquote:after, q:before, q:after {
+	content:'';
+	content:none;
+}
+
+.clearfix {clear:both;}
+
+a, a img {text-decoration:none;}
+
+a img {border:0;}
+
+html { -webkit-font-smoothing: antialiased; }
+
+input[type="text"], textarea, input[type="submit"] {
+	appearance:none;
+	-webkit-appearance:none;
+	-moz-appearance:none;
+	outline:none;
+	border-radius:0px;
+}
+
+body {
+	background:#ffffff;
+	font-family: 'Open Sans', sans-serif;
+}
+
+.wrapper {
+	width:320px;
+	margin:15px auto;
+	height:420px;
+	position:relative;
+	overflow-y:scroll;
+	padding-bottom:60px;
+	border:2px solid #949495;
+}
+
+/* Header Style */
+#header {
+	background:#4d4d4d;
+	width:98%;
+	float:left;
+	padding:5px 1%;
+}
+
+#header .logo {
+	float:left;
+	width:25%;
+	margin:10px 0px 0px 5px;
+}
+
+#header h1 {
+	text-align:center;
+	width:47%;
+	float:left;
+	color:#fbfbfb;
+	font-size:24px;
+	font-weight:normal;
+	text-decoration:capitalize;
+	line-height:40px;
+}
+
+#header h1.font {
+	width:62%;
+	padding-left:15%;
+}
+
+/* Nav Style */
+#header .nav { 
+	float:right;
+	width:20%;
+}
+
+#header .nav span {
+	float:left;
+	margin:8px 0px 0px 0px;
+}
+
+#header .nav  a {
+	float:right;
+	margin:14px 5px 0px 0px;
+}
+
+/* Top */
+#top {
+	width:100%;
+	float:left;
+	background:#e6e7e8;
+	padding:10px 0px;
+}
+
+#top a {
+	color:#4d4a4b;
+	font-weight:normal;
+	margin-left:1%;
+	font-size:10px;
+	font-weight:bold;
+}
+
+#top  h3 {
+	color:#4d4a4b;
+	text-align:center;
+	font-weight:600;
+	margin-bottom:10px;
+}
+
+#top h4 {
+	text-align:center;
+	font-size:10px;
+	color:#b6b8b9;
+}
+
+#top p {
+	text-align:center;
+	font-size:16px;
+	color:#272324;
+	margin:5px 0px 0px 0px;
+}
+
+/* details */
+#details {
+	width:100%;
+	float:left;
+}
+
+#details ul {
+	float:left;
+	width:100%;
+}
+
+#details ul span {
+	
+}
+
+#details ul li {
+	width:100%;
+	border-bottom:1px solid #e6e7e8;
+	float:left;
+	padding:10px 0px;
+}
+
+#details ul li a {
+	width:100%;
+	float:left;
+}
+
+#details ul li a .left {
+	float:left;
+	width:30%;
+	text-align:center;
+}
+
+#details ul li a .right {
+	float:right;
+	width:68%;
+	padding-right:2%;
+}
+
+#details ul li a .right h3 {
+	color:#4d4a4b;
+	font-size:22px;
+}
+
+#details ul li a .right p {
+	color:#4d4a4b;
+	font-size:12px;
+	text-align:left;
+	margin:5px 0px;
+}
+
+#details ul li a .right label {
+	color:#bbbdbf;
+	font-size:12px;
+}
+
+#details p {
+	text-align:center;
+	vertical-align:justify;
+	font-weight:600;
+	width:80%;
+	margin:20px 10%;
+	font-size:12px;
+}
+
+#details .content {
+	width:94%;
+	margin:0px 3%;
+	float:left;
+	text-align:center;
+	vertical-align:middle;
+}
+
+#details .content h3 {
+	width:26px;
+	background:#4d4d4d;
+	display:inline-block;
+	border-radius:100%;
+	color:#ffffff;
+	line-height:24px;
+}
+
+#details .content .text {
+	background:#e6e7e8;
+	width:100%;
+	float:left;
+	margin:5px 0px;
+}
+
+#details .content .text p b {
+	color:#2f2b2c;
+}
+
+#details .content .text p {
+	text-align:left;
+	margin:10px 5%;
+	float:left;
+	width:90%;
+	color:#868485;
+	font-weight:normal;
+	line-height:22px;
+}
+
+/* Footer Style */
+#footer {
+	width:320px;
+	background:#bbbdbf;
+	text-align:center;
+	position:fixed;
+	top:443px;
+	padding:15px 0px;
+}
+
+#footer button {
+	border:1px solid #4d4d4d;
+	width:66px;
+	cursor:pointer;
+	border-radius:20px;
+	line-height:20px;
+	display:inline-block;
+	margin:0px 5px;
+}
+
+#footer button.active {
+	background:#4d4d4d;
+	color:#ffffff;
+	border:none;
+}
