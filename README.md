@@ -1,4 +1,6 @@
-# NOI
+# Deprecated
+============
+
 Network of Innovators
 and now Anupama is part of it.
 
